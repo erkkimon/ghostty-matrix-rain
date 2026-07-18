@@ -12,41 +12,39 @@ The default tuning is deliberately **subliminal**: while you work, text just
 seems to breathe faintly. From across the room, your screen is unmistakably
 raining.
 
-## Install
+## Quick start
 
 ```sh
-mkdir -p ~/.config/ghostty
-curl -o ~/.config/ghostty/matrix-rain.glsl \
-  https://raw.githubusercontent.com/benquemax/ghostty-matrix-rain/main/matrix-rain.glsl
+curl -fsSL https://raw.githubusercontent.com/erkkimon/ghostty-matrix-rain/main/install.sh | bash
 ```
 
-Add to `~/.config/ghostty/config`:
+Then:
+
+1. Open a **new** Ghostty window — it's raining. (Shader changes always apply
+   to new windows, not existing ones.)
+2. Inside that window, align the rain to your font's grid:
+
+   ```sh
+   ~/.config/ghostty/rain-calibrate.sh
+   ```
+
+   and open one more new window. Re-run after changing font or font size.
+
+For the classic look, also add to `~/.config/ghostty/config`:
 
 ```ini
-custom-shader = ~/.config/ghostty/matrix-rain.glsl
-# optional, the classic look:
 background = 000000
 foreground = 00ff41
 ```
 
-Open a new Ghostty window. (Shader changes always apply to new windows, not
-existing ones.)
+## Manual install
 
-## Calibrate (recommended)
+Copy `matrix-rain.glsl` to `~/.config/ghostty/` and add to
+`~/.config/ghostty/config`:
 
-The wave steps align to your terminal's character grid. Font cell size varies
-by font, size, and display scale, so measure yours — run this **inside a
-Ghostty window**:
-
-```sh
-curl -o /tmp/rain-calibrate.sh \
-  https://raw.githubusercontent.com/benquemax/ghostty-matrix-rain/main/rain-calibrate.sh
-bash /tmp/rain-calibrate.sh
+```ini
+custom-shader = ~/.config/ghostty/matrix-rain.glsl
 ```
-
-It reads the real cell size from the terminal (`TIOCGWINSZ`) and patches
-`CELL_W`/`CELL_H` in the installed shader. Re-run after changing font or
-font size.
 
 ## Tuning
 
