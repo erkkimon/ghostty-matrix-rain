@@ -7,8 +7,8 @@ const float CELL_H = 20.0; // cell height in px
 const float MIN_B  = 0.85; // brightness floor — text stays readable
 const float TAIL   = 4.0;  // bigger = shorter trail
 const float SPEED  = 0.12; // base fall speed, screens per second
-const float GLOW   = 0.025; // background glow strength, 0 = text-only rain (subliminal: 0.008-0.05)
-const float GRAIN  = 2.0;  // rain cells per text cell — raise for finer rain
+const float GLOW   = 0.018; // background glow strength, 0 = text-only rain (subliminal: 0.008-0.05)
+const float GRAIN  = 4.0;  // rain cells per text cell — raise for finer rain
 const float TINT   = 1.0;  // 1.0 = force every glyph green, 0.0 = keep terminal colors
 const float UNFOC  = 0.55; // brightness of an unfocused surface (1.0 = no dimming)
 const vec3  MATRIX = vec3(0.0, 1.0, 0.25); // Matrix green

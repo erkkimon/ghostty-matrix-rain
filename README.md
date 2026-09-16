@@ -60,8 +60,8 @@ All knobs are constants at the top of `matrix-rain.glsl`:
 | `MIN_B` | 0.85 | brightness floor; lower = deeper, more visible dimming |
 | `TAIL` | 4.0 | trail falloff; bigger = shorter streaks |
 | `SPEED` | 0.12 | fall speed in screens/second; slow speeds evade peripheral vision |
-| `GLOW` | 0.025 | faint green wash on empty cells so sparse text doesn't read as blinking; 0 disables |
-| `GRAIN` | 2.0 | rain cells per text cell — raise for finer rain, independent of calibration |
+| `GLOW` | 0.018 | faint green wash on empty cells so sparse text doesn't read as blinking; 0 disables |
+| `GRAIN` | 4.0 | rain cells per text cell — particle size is `CELL/GRAIN`, so it tracks your font size automatically; raise for finer rain |
 | `TINT` | 1.0 | 1.0 = force every glyph green, 0.0 = keep your terminal's colors |
 | `UNFOC` | 0.55 | brightness of an unfocused surface — 1.0 disables the dimming |
 | `MATRIX` | Matrix green | tint and glow color |
