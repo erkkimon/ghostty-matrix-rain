@@ -4,9 +4,13 @@ Matrix rain for [Ghostty](https://ghostty.org) that never moves a character.
 
 Instead of drawing falling glyphs, the shader modulates the **brightness of
 whatever is already on your screen**: each column of the terminal grid gets a
-slow falling wave — bright head, fading trail — riding over your real text in
-your real colors. Software running in the terminal can't tell it's happening;
-there is nothing to break.
+slow falling wave — bright head, fading trail — riding over your real text.
+Software running in the terminal can't tell it's happening; there is nothing
+to break.
+
+By default every glyph is also recolored to Matrix green, preserving each
+pixel's brightness. Set `TINT` to `0.0` to keep your terminal's real colors
+and get brightness waves only.
 
 The default tuning is deliberately **subliminal**: while you work, text just
 seems to breathe faintly. From across the room, your screen is unmistakably
@@ -56,13 +60,16 @@ All knobs are constants at the top of `matrix-rain.glsl`:
 | `MIN_B` | 0.85 | brightness floor; lower = deeper, more visible dimming |
 | `TAIL` | 4.0 | trail falloff; bigger = shorter streaks |
 | `SPEED` | 0.12 | fall speed in screens/second; slow speeds evade peripheral vision |
-| `GLOW` | 0.008 | faint green wash on empty cells so sparse text doesn't read as blinking; 0 disables |
-| `GLOW_COLOR` | Matrix green | glow tint |
+| `GLOW` | 0.025 | faint green wash on empty cells so sparse text doesn't read as blinking; 0 disables |
+| `GRAIN` | 2.0 | rain cells per text cell — raise for finer rain, independent of calibration |
+| `TINT` | 1.0 | 1.0 = force every glyph green, 0.0 = keep your terminal's colors |
+| `UNFOC` | 0.55 | brightness of an unfocused surface — 1.0 disables the dimming |
+| `MATRIX` | Matrix green | tint and glow color |
 
 Two starting points:
 
-- **Subliminal** (default): `MIN_B 0.85, SPEED 0.12, GLOW 0.008` — invisible
-  up close, visible from afar.
+- **Subliminal**: `MIN_B 0.85, SPEED 0.12, GLOW 0.008, TINT 0.0` — invisible
+  up close, visible from afar, and your colors untouched.
 - **Cinematic**: `MIN_B 0.30, SPEED 0.22, GLOW 0.02` — you're in the Matrix
   and you know it.
 
@@ -73,7 +80,13 @@ Two starting points:
 - Designed for dark backgrounds: dimming pixels only reads as "font opacity"
   when the background is near-black.
 - `custom-shader-animation = always` in the Ghostty config keeps it raining
-  while unfocused, at some battery cost.
+  while unfocused, at some battery cost. The installer adds it for you. It is
+  **required** for `UNFOC`: the default `true` animates only the focused
+  surface, so unfocused windows would freeze on their last focused frame and
+  never dim.
+- `UNFOC` dims unfocused surfaces so the active one stands out, using Ghostty's
+  `iFocus` shader uniform — no window-manager support needed. It applies per
+  *surface*, so splits within a window dim independently too.
 
 ## License
 
