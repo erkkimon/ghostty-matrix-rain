@@ -63,7 +63,8 @@ All knobs are constants at the top of `matrix-rain.glsl`:
 | `GLOW` | 0.018 | faint green wash on empty cells so sparse text doesn't read as blinking; 0 disables |
 | `GRAIN` | 4.0 | rain cells per text cell — particle size is `CELL/GRAIN`, so it tracks your font size automatically; raise for finer rain |
 | `TINT` | 1.0 | 1.0 = force every glyph green, 0.0 = keep your terminal's colors |
-| `UNFOC` | 0.55 | brightness of an unfocused surface — 1.0 disables the dimming |
+| `FOCUS` | 0.70 | rain brightness on the focused surface — 1.0 = full |
+| `UNFOC` | 0.35 | rain brightness on an unfocused surface |
 | `MATRIX` | Matrix green | tint and glow color |
 
 Two starting points:
@@ -84,9 +85,11 @@ Two starting points:
   **required** for `UNFOC`: the default `true` animates only the focused
   surface, so unfocused windows would freeze on their last focused frame and
   never dim.
-- `UNFOC` dims unfocused surfaces so the active one stands out, using Ghostty's
-  `iFocus` shader uniform — no window-manager support needed. It applies per
-  *surface*, so splits within a window dim independently too.
+- `FOCUS` / `UNFOC` scale the rain by focus state, using Ghostty's `iFocus`
+  shader uniform — no window-manager support needed — so the active window
+  stands out. They scale the **rain only**, never the glyphs, so background
+  windows stay readable. Applies per *surface*, so splits within a window
+  scale independently too.
 
 ## License
 
