@@ -24,8 +24,13 @@ curl -fsSL https://raw.githubusercontent.com/erkkimon/ghostty-matrix-rain/main/i
 
 Then:
 
-1. Open a **new** Ghostty window — it's raining. (Shader changes always apply
-   to new windows, not existing ones.)
+1. Open a **new** Ghostty window — it's raining. (Shader *code* changes apply
+   to new windows, not existing ones. Config *settings* like
+   `custom-shader-animation` need a reload: press `ctrl+shift+,` to re-read
+   the config live — no restart, no new window — or fully quit Ghostty. A
+   running window keeps its old settings until then, which is why a fresh
+   window opened by an already-running instance can still show the old
+   behavior.)
 2. Inside that window, align the rain to your font's grid:
 
    ```sh
@@ -84,7 +89,8 @@ Two starting points:
   while unfocused, at some battery cost. The installer adds it for you. It is
   **required** for `UNFOC`: the default `true` animates only the focused
   surface, so unfocused windows would freeze on their last focused frame and
-  never dim.
+  never dim. Change it on an already-running Ghostty and you must reload
+  (`ctrl+shift+,`) or restart for it to take effect.
 - `FOCUS` / `UNFOC` scale the rain by focus state, using Ghostty's `iFocus`
   shader uniform — no window-manager support needed — so the active window
   stands out. They scale the **rain only**, never the glyphs, so background
