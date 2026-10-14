@@ -1,7 +1,13 @@
-// Matrix rain for Ghostty — full-green variant.
-// Every glyph is tinted to matrix green (luminance preserved), and each grid
-// cell's brightness rides a wave falling down its column. No characters move.
-// Tune CELL_W / CELL_H to your font's cell size in pixels for crisp per-cell steps.
+// Matrix rain for Ghostty.
+// Each grid cell's brightness rides a wave falling down its column. No characters move.
+//
+// SETTINGS (edit the constants below; Ghostty shaders cannot read the config file):
+//   TINT  — the one most people want to touch. 1.0 paints every glyph matrix green
+//           (luminance preserved: syntax highlighting collapses to shades of green).
+//           0.0 keeps the terminal's own colours (syntax highlighting stays visible).
+//           Values between blend the two.
+//   CELL_W / CELL_H — your font's cell size in px; run ./rain-calibrate.sh to set them.
+// After editing, reload Ghostty's config (ctrl+shift+,) or open a new window.
 
 const float CELL_W = 10.0; // cell width in px (depends on font/size)
 const float CELL_H = 20.0; // cell height in px
@@ -9,7 +15,7 @@ const float MIN_B  = 0.85;  // brightness floor — text stays readable
 const float TAIL   = 4.0;   // bigger = shorter trail
 const float SPEED  = 0.12;  // base fall speed, screens per second
 const float GLOW   = 0.018; // rain glow on empty cells (green trail wash)
-const float TINT   = 1.0;   // 1.0 = force every glyph fully green, 0.0 = keep original colors
+const float TINT   = 1.0;   // 1.0 = everything matrix green, 0.0 = keep terminal colours (see header)
 const float GRAIN  = 4.0;   // rain cells per text cell — raise for finer rain
 const float FOCUS  = 0.70;  // rain brightness on the focused window (1.0 = full)
 const float UNFOC  = 0.35;  // rain brightness on an unfocused window

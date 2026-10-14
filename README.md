@@ -9,7 +9,8 @@ Software running in the terminal can't tell it's happening; there is nothing
 to break.
 
 By default every glyph is also recolored to Matrix green, preserving each
-pixel's brightness. Set `TINT` to `0.0` to keep your terminal's real colors
+pixel's brightness, which also turns editor syntax highlighting into shades of
+green. Set `TINT` to `0.0` to keep your terminal's real colors
 and get brightness waves only.
 
 The default tuning is deliberately **subliminal**: while you work, text just
